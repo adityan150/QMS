@@ -1,0 +1,31 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 231, 231, 1);
+  border-bottom: 1px solid #fff;
+
+  .headerContainer {
+    width: 100%;
+    max-width: 1200px;
+    height: 42px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .client {
+      color: rgba(251, 41, 41, 1);
+      cursor: pointer;
+    }
+    .account {
+      margin-left: 1rem;
+    }
+    .feedback {
+      cursor: pointer;
+    }
+  }
+}
