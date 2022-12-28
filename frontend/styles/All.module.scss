@@ -1,0 +1,31 @@
+@use "./colors" as *;
+@use "./utils" as *;
+
+.all {
+  width: 100%;
+  
+  .allContainer {
+    width: 100%;
+    max-width: $max-width;
+    margin: auto;
+    padding: 1rem;
+  
+    .searchBar {
+      display: flex;
+      border: 1px solid $gray;
+      border-radius: 0.25rem;
+      width: 25%;
+      min-width: 200px;
+      padding: 0.25rem;
+      margin-left: auto;
+  
+      input {
+        margin-left: 0.25rem;
+        width: 100%;
+        border: none;
+        outline: none;
+      }
+    }
+  }
+
+}

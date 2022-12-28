@@ -1,0 +1,94 @@
+@use "../../styles/colors" as *;
+@use "../../styles/utils" as *;
+
+.newQuery {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 1.5rem;
+
+  .queryHeader {
+    padding: 2rem;
+    border-radius: 0.3rem;
+    background-color: $primary-light;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 4rem;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      color: $white;
+      font-size: 0.9rem;
+
+      select {
+        border-radius: 0.1rem;
+        margin-top: 0.5rem;
+        padding: 0.4rem;
+        border: none;
+        outline: none;
+      }
+    }
+    .category {
+      flex: 1;
+    }
+    .subject {
+      flex: 2;
+    }
+  }
+
+  .queryInput {
+    width: 100%;
+    height: 200px;
+    margin-top: 1.5rem;
+    padding: 2rem;
+    border-radius: 0.3rem;
+    box-shadow: #64646f33 0px 7px 29px 0px;
+  }
+
+  .check {
+    padding: 0 0.5rem;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: $gray;
+
+    input {
+      margin-right: 1rem;
+      accent-color: $primary;
+    }
+  }
+
+  .btnGroup {
+    width: fit-content;
+    margin-left: auto;
+    margin-top: 1.5rem;
+
+    button {
+      padding: 13px 35px;
+      margin-left: 1rem;
+      border: none;
+      border-radius: 0.3rem;
+      font-weight: 500;
+      cursor: pointer;
+
+      &.cancelBtn {
+        background-color: $lightgray;
+        &:hover {
+          background-color: lighten($color: $gray, $amount: 10);
+        }
+      }
+      &.submitBtn {
+        background-color: $primary;
+        color: $white;
+        &:hover {
+          background-color: darken($color: $primary, $amount: 10);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@use "../../styles/colors" as *;
+@use "../../styles/utils" as *;
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(0, $tertiary 0%, $white 100%);
+  .footerContainer {
+    width: 50%;
+    max-width: $max-width;
+    height: 7.5rem;
+    padding: 1rem;
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 2rem;
+    color: $gray;
+
+    .link {
+      cursor: pointer;
+      &:hover {
+        font-weight: 500;
+      }
+    }
+  }
+}

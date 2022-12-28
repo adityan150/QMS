@@ -1,0 +1,8 @@
+@use "./colors" as *;
+@use "./utils" as *;
+
+.activity {
+  width: 100%;
+  text-align: center;
+  min-height: 80vh;
+}
