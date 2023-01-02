@@ -4,6 +4,19 @@ import { useState } from "react";
 
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
+import { Checkbox } from "@mui/material";
+
+function CustomCheckbox(props) {
+  return (
+    <Checkbox size="small"
+      sx={{
+        color: "#FF6060",
+        "&.Mui-checked": { color: "#FF6060" },
+      }}
+      {...props}
+    />
+  );
+}
 
 const columns = [
   { field: "date", headerName: "Date", width: 100 },
@@ -189,12 +202,12 @@ const rows = [
   },
 ];
 
-export default function Table({setShowButton}) {
+export default function Table({ setShowButton }) {
   const [selectedRows, setSelectedRows] = useState([]);
   function handleSelection(ids) {
     const selectedIDs = new Set(ids);
     const selectedRows = rows.filter((row) => selectedIDs.has(row.id));
-    (selectedRows.length == 1) ? setShowButton(true) : setShowButton(false);
+    selectedRows.length == 1 ? setShowButton(true) : setShowButton(false);
     setSelectedRows(selectedRows);
     console.log(selectedRows);
   }
@@ -209,6 +222,9 @@ export default function Table({setShowButton}) {
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}
         onSelectionModelChange={handleSelection}
+        components={{
+          BaseCheckbox: CustomCheckbox,
+        }}
         sx={{
           ".MuiDataGrid-columnSeparator": {
             display: "none",
@@ -218,13 +234,13 @@ export default function Table({setShowButton}) {
             fontSize: "12px",
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: "#DEF4F7",
+            backgroundColor: " #FFE5E5",
             fontSize: "15px",
           },
           "& .MuiDataGrid-virtualScrollerRenderZone": {
             "& .MuiDataGrid-row": {
-              "&:hover": { backgroundColor: "#DEF4F7" },
-              "&.Mui-selected": { backgroundColor: "#DEF4F7" },
+              "&:hover": { backgroundColor: "#FFF4F4" },
+              "&.Mui-selected": { backgroundColor: "#FFF4F4" },
             },
           },
         }}
