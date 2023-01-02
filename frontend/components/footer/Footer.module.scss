@@ -2,8 +2,7 @@
 @use "../../styles/utils" as *;
 
 .footer {
-  position: fixed;
-  bottom: 0;
+  margin-top: 2rem;
   width: 100%;
   display: flex;
   align-items: center;

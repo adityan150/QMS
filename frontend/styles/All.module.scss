@@ -3,13 +3,12 @@
 
 .all {
   width: 100%;
-  
+
   .allContainer {
     width: 100%;
     max-width: $max-width;
     margin: auto;
     padding: 1rem;
-  
     .searchBar {
       display: flex;
       border: 1px solid $gray;
@@ -24,6 +23,49 @@
         width: 100%;
         border: none;
         outline: none;
+      }
+    }
+    .counters {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-top: 2rem;
+    }
+    .buttons {
+      height: 2.5rem;;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 10px;
+      margin: 1rem 0;
+     
+      button {
+        font-size: 12px;
+        height: 32px;
+        width: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        border-radius: 0.25rem;
+        border: 1px solid $lightgray;
+        background-color: $white;
+        cursor: pointer;
+
+        &:first-child {
+          color: #2D264B;
+        }
+        
+        &:active {
+          background-color: $accent;
+          border: 1px solid $tertiary;
+        }
+        &:disabled {
+          display: disabled;
+          border: 1px solid $lightgray;
+          color: $lightgray;
+          pointer-events: none;
+        }
       }
     }
   }
