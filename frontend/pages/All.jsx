@@ -9,9 +9,19 @@ import Counter from "../components/counter/Counter";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import BlockOutlinedIcon from "@mui/icons-material/BlockOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
+import { createPortal } from "react-dom";
+import CloseQueryModal from "../components/close-modal/CloseQueryModal";
 
 function All() {
   const [showButton, setShowButton] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+
+  function handleCloseQuery() {
+    setShowModal(true);
+    console.log(selectedRows[0]);
+  }
+
   return (
     <Layout>
       <div className={styles.all}>
@@ -33,16 +43,27 @@ function All() {
               <DeleteOutlineOutlinedIcon sx={{ fontSize: "1.1rem" }} />
               &nbsp; Delete
             </button>
-            <button disabled={!showButton}>
+            <button disabled={!showButton} onClick={handleCloseQuery}>
               <BlockOutlinedIcon sx={{ fontSize: "1.1rem" }} />
               &nbsp; Close
             </button>
+            {showModal &&
+              createPortal(
+                <CloseQueryModal
+                  closeModal={() => setShowModal(false)}
+                  data={selectedRows[0]}
+                />,
+                document.body
+              )}
             <button disabled={!showButton}>
               <TimelineOutlinedIcon sx={{ fontSize: "1.1rem" }} />
               &nbsp; Activity
             </button>
           </div>
-          <Table setShowButton={setShowButton} />
+          <Table
+            setShowButton={setShowButton}
+            setSelectedRows={setSelectedRows}
+          />
         </div>
       </div>
     </Layout>

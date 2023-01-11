@@ -67,28 +67,5 @@
     width: fit-content;
     margin-left: auto;
     margin-top: 1.5rem;
-
-    button {
-      padding: 13px 35px;
-      margin-left: 1rem;
-      border: none;
-      border-radius: 0.3rem;
-      font-weight: 500;
-      cursor: pointer;
-
-      &.cancelBtn {
-        background-color: $lightgray;
-        &:hover {
-          background-color: lighten($color: $gray, $amount: 10);
-        }
-      }
-      &.submitBtn {
-        background-color: $primary;
-        color: $white;
-        &:hover {
-          background-color: darken($color: $primary, $amount: 10);
-        }
-      }
-    }
   }
 }

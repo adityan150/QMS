@@ -6,9 +6,26 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { Checkbox } from "@mui/material";
 
+import { createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@emotion/react";
+
+// custom MUI theme for DataGrid
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#FB2929",
+    },
+    secondary: {
+      main: "#FFD0D0",
+    },
+    contrastThreshold: 3,
+  },
+});
+
 function CustomCheckbox(props) {
   return (
-    <Checkbox size="small"
+    <Checkbox
+      size="small"
       sx={{
         color: "#FF6060",
         "&.Mui-checked": { color: "#FF6060" },
@@ -54,6 +71,11 @@ const columns = [
     headerName: "Last Updated",
     width: 180,
   },
+  {
+    field: "resolveBy",
+    headerName: "Resolve By",
+    width: 180,
+  }
 ];
 
 const rows = [
@@ -67,6 +89,7 @@ const rows = [
     status: "Open",
     escalated: "Dean",
     lastUpdated: "2021-10-01 11:45 AM",
+    resolveBy: "2021-10-01 11:45 AM",
   },
   {
     id: 2,
@@ -78,6 +101,8 @@ const rows = [
     status: "Open",
     escalated: "Dean",
     lastUpdated: "2021-10-01 11:45 AM",
+    resolveBy: "2021-10-01 11:45 AM",
+
   },
   {
     id: 3,
@@ -89,6 +114,8 @@ const rows = [
     status: "Open",
     escalated: "Dean",
     lastUpdated: "2021-10-01 11:45 AM",
+    resolveBy: "2021-10-01 11:45 AM",
+
   },
   {
     id: 4,
@@ -100,6 +127,8 @@ const rows = [
     status: "Open",
     escalated: "Dean",
     lastUpdated: "2021-10-01 11:45 AM",
+    resolveBy: "2021-10-01 11:45 AM",
+
   },
   {
     id: 5,
@@ -111,6 +140,8 @@ const rows = [
     status: "Open",
     escalated: "Dean",
     lastUpdated: "2021-10-01 11:45 AM",
+    resolveBy: "2021-10-01 11:45 AM",
+
   },
   {
     id: 6,
@@ -122,6 +153,8 @@ const rows = [
     status: "Open",
     escalated: "Dean",
     lastUpdated: "2021-10-01 11:45 AM",
+    resolveBy: "2021-10-01 11:45 AM",
+
   },
   {
     id: 7,
@@ -133,6 +166,8 @@ const rows = [
     status: "Open",
     escalated: "Dean",
     lastUpdated: "2021-10-01 11:45 AM",
+    resolveBy: "2021-10-01 11:45 AM",
+
   },
   {
     id: 8,
@@ -144,6 +179,8 @@ const rows = [
     status: "Open",
     escalated: "Dean",
     lastUpdated: "2021-10-01 11:45 AM",
+    resolveBy: "2021-10-01 11:45 AM",
+
   },
   {
     id: 9,
@@ -155,6 +192,8 @@ const rows = [
     status: "Open",
     escalated: "Dean",
     lastUpdated: "2021-10-01 11:45 AM",
+    resolveBy: "2021-10-01 11:45 AM",
+
   },
   {
     id: 10,
@@ -166,6 +205,8 @@ const rows = [
     status: "Open",
     escalated: "Dean",
     lastUpdated: "2021-10-01 11:45 AM",
+    resolveBy: "2021-10-01 11:45 AM",
+
   },
   {
     id: 11,
@@ -177,6 +218,8 @@ const rows = [
     status: "Open",
     escalated: "Dean",
     lastUpdated: "2021-10-01 11:45 AM",
+    resolveBy: "2021-10-01 11:45 AM",
+
   },
   {
     id: 12,
@@ -188,6 +231,8 @@ const rows = [
     status: "Open",
     escalated: "Dean",
     lastUpdated: "2021-10-01 11:45 AM",
+    resolveBy: "2021-10-01 11:45 AM",
+
   },
   {
     id: 13,
@@ -199,11 +244,14 @@ const rows = [
     status: "Open",
     escalated: "Dean",
     lastUpdated: "2021-10-01 11:45 AM",
+    resolveBy: "2021-10-01 11:45 AM",
+
   },
 ];
 
-export default function Table({ setShowButton }) {
-  const [selectedRows, setSelectedRows] = useState([]);
+export default function Table({ setShowButton, setSelectedRows }) {
+  
+  // Get selected data from the table
   function handleSelection(ids) {
     const selectedIDs = new Set(ids);
     const selectedRows = rows.filter((row) => selectedIDs.has(row.id));
@@ -213,38 +261,42 @@ export default function Table({ setShowButton }) {
   }
   return (
     <Box className={styles.box} sx={{ height: 500, width: "100%" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={8}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-        disableSelectionOnClick
-        experimentalFeatures={{ newEditingApi: true }}
-        onSelectionModelChange={handleSelection}
-        components={{
-          BaseCheckbox: CustomCheckbox,
-        }}
-        sx={{
-          ".MuiDataGrid-columnSeparator": {
-            display: "none",
-          },
-          "&.MuiDataGrid-root": {
-            border: "none",
-            fontSize: "12px",
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: " #FFE5E5",
-            fontSize: "15px",
-          },
-          "& .MuiDataGrid-virtualScrollerRenderZone": {
-            "& .MuiDataGrid-row": {
-              "&:hover": { backgroundColor: "#FFF4F4" },
-              "&.Mui-selected": { backgroundColor: "#FFF4F4" },
+      <ThemeProvider theme={theme}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{ columns: {
+            // hide resolve by column
+            columnVisibilityModel: {resolveBy: false}
+          }}}
+          pageSize={10}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+          experimentalFeatures={{ newEditingApi: true }}
+          onSelectionModelChange={handleSelection}
+          components={{
+            BaseCheckbox: CustomCheckbox,
+          }}
+          sx={{
+            ".MuiDataGrid-columnSeparator": {
+              display: "none",
             },
-          },
-        }}
-      />
+            "&.MuiDataGrid-root": {
+              border: "none",
+              fontSize: "12px",
+            },
+            "& .MuiDataGrid-columnHeaders": {
+              backgroundColor: " #FFE5E5",
+              fontSize: "15px",
+            },
+            "& .MuiDataGrid-virtualScrollerRenderZone": {
+              "& .MuiDataGrid-row": {
+                "&:hover": { backgroundColor: "#FFF4F4" }
+              },
+            },
+          }}
+        />
+      </ThemeProvider>
     </Box>
   );
 }

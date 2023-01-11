@@ -1,3 +1,4 @@
+import { ButtonPrimary, ButtonSecondary } from "../buttons/Buttons";
 import styles from "./NewQuery.module.scss";
 
 function NewQuery() {
@@ -44,8 +45,8 @@ function NewQuery() {
         </label>
       </div>
       <div className={styles.btnGroup}>
-        <button className={styles.cancelBtn}>Cancel</button>
-        <button className={styles.submitBtn}>Submit Query</button>
+        <ButtonSecondary>Cancel</ButtonSecondary>
+        <ButtonPrimary >Submit Query</ButtonPrimary>
       </div>
     </form>
   );
